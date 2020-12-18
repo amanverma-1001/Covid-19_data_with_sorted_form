@@ -1,0 +1,29 @@
+#topic{
+    background-color: lightslategrey;
+    height:100px;
+    padding-top:25px;
+}
+
+#listofcountries {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #listofcountries td, #listofcountries th {
+    border: 2px solid #ddd;
+    padding: 8px;
+  }
+  
+  #listofcountries tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #listofcountries tr:hover {background-color: #ddd;}
+  
+  #listofcountries th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #766f7a;
+    color: white;
+  }
+  
