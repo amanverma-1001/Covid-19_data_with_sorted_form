@@ -1,17 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-    <style>
-        table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-th, td {
-  padding: 15px;
-}
-
-    </style>
+  <head>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
 <body>
-  <label for="case">Sort by:</label>
+  <center>
+  <h1 id="topic">Get Covid-19 Data latest with reports</h1>
+  </center>
+  <div class="container">
+    
+    
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+  
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ul>
+    
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="pics_covid19/aware1.jpeg" alt="Los Angeles" width="1100" height="500">
+      </div>
+      <div class="carousel-item">
+        <img src="pics_covid19/aware2.png" alt="Chicago" width="1100" height="500">
+      </div>
+      <div class="carousel-item">
+        <img src="pics_covid19/aware3.png" alt="New York" width="1100" height="500">
+      </div>
+    </div>
+    
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </a>
+  </div>
+</div>  
+  
+<br><br>
+  <div>
+  <h3>World data</h3>
+  <h4 id="glo"></h4>
+  </div>
+
+  <input id="userfield">
+  <h3>Write name of country to track</h3>
+  <button id="submit1">Submit</button>
+  <p id="userinput"></p>
+  
   <select id="case" name="case">
     <option value="NewConfirmed">New Confirmed</option>
     <option value="NewDeaths">New Deaths</option>
@@ -21,9 +68,9 @@ th, td {
     <option value="TotalRecovered">Total Recovered</option>
     
   </select>
-
-    <button>get data</button>
-    <table style="width:100%">
+  <button id="submit2">Submit</button>
+  <br>
+    <table style="width:100%" id="listofcountries">
         <tr>
             <th>Index Number</th>
           <th>Country</th>
@@ -44,9 +91,7 @@ th, td {
       
   <p class="one"></p>
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-  <script src="data.js">
-      
-  </script>
+  <script src="data.js"></script>
 
 </body>
 </html>
