@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    
   </head>
 <body>
   <center>
-  <h1 id="topic">Get Covid-19 Data latest with reports</h1>
+  <h1 id="topic">Get Covid-19 latest data</h1>
   </center>
   <div class="container">
     
@@ -28,10 +29,10 @@
     <!-- The slideshow -->
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="pics_covid19/aware1.jpeg" alt="Los Angeles" width="1100" height="500">
+        <img src="pics_covid19/aware2.png" alt="Los Angeles" width="1100" height="500">
       </div>
       <div class="carousel-item">
-        <img src="pics_covid19/aware2.png" alt="Chicago" width="1100" height="500">
+        <img src="pics_covid19/tribute.webp" alt="Chicago" width="1100" height="500">
       </div>
       <div class="carousel-item">
         <img src="pics_covid19/aware3.png" alt="New York" width="1100" height="500">
@@ -49,16 +50,36 @@
 </div>  
   
 <br><br>
-  <div>
-  <h3>World data</h3>
-  <h4 id="glo"></h4>
-  </div>
+    <div class="card bg-info text-white">
+      <div class="card-body"><h3>World data</h3></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+    
+  <div id="glo">
 
-  <input id="userfield">
-  <h3>Write name of country to track</h3>
-  <button id="submit1">Submit</button>
-  <p id="userinput"></p>
-  
+  </div>
+  </div>
+  <div class="col-sm-6">
+  <img  src="pics_covid19/aware_globe.jpg" alt="picture of globe">
+  </div>
+</div>
+<br>
+<div class="row">
+<div class="col-sm-6">
+  <br><br>
+<h3>Write name of Country</h3>
+  <input id="userfield" placeholder="search by name....">
+  <button type="submit" id="submit1" style="background-color: blue;"><i class="fa fa-search" style="font-size: 20px;"></i></button>
+
+<br><br><br><br>
+<h3>Display on basis of:</h3>
+  <p id="userinput" style="margin-bottom:20px"></p>
+  </div>
+  <div class="col-sm-6">
+  <img id="img2" src="pics_covid19/positive.gif" alt="We will get through this">
+  </div>
+  </div>
   <select id="case" name="case">
     <option value="NewConfirmed">New Confirmed</option>
     <option value="NewDeaths">New Deaths</option>
@@ -70,12 +91,14 @@
   </select>
   <button id="submit2">Submit</button>
   <br>
+  <br><br>
     <table style="width:100%" id="listofcountries">
         <tr>
             <th>Index Number</th>
           <th>Country</th>
-          <th>Countrycode</th> 
           <th>Slug</th>
+          <th>Countrycode</th> 
+          
           <th>New confirmed</th>
           <th>New Deaths</th>
           <th>New Recovered</th>
@@ -89,9 +112,10 @@
         </tbody>
         </table>
       
-  <p class="one"></p>
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-  <script src="data.js"></script>
+  <script src="data.js">
+   
+  </script>
 
 </body>
 </html>

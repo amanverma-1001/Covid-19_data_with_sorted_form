@@ -8,14 +8,15 @@ return res.json();
 {
 console.log(d.Global);
 var t=d.Global;
-$("#glo").html("New Confirmed     "+t.NewConfirmed
-+" <br> Total Confirmed "+t.TotalConfirmed+" <br>  New Deaths"
-+t.NewDeaths+" <br>  TotalDeaths"+t.TotalDeaths+" <br> New Recovered"+t.NewRecovered);
+$("#glo").html("<u1> <li style='background-color:red'>  Total Confirmed "+t.TotalConfirmed+"</li><li style='color:black'> Total Recovered "+t.TotalRecovered
+  +"</li>  <li style='background-color:red'> Total Deaths "+t.TotalDeaths   
++"</li><li style='color:black'>New Confirmed "+t.NewConfirmed+"</li><li style='background-color:red'>  New Deaths "
++t.NewDeaths+"</li><li style='color:black'> New Recovered "+t.NewRecovered+"</li></u1>");
 console.log(d.Countries);
 function display(arr){
 for(i=0;i<arr.length;i++){
    y+='<tr>';
-    y+='<td>'+i+'</td>';
+    y+='<td>'+(i+1)+'</td>';
     y+='<td>'+arr[i].Country+'</td>';
     y+='<td>'+arr[i].Slug+'</td>';
     y+='<td>'+arr[i].CountryCode+'</td>';
@@ -47,7 +48,7 @@ d.Countries.sort(function(a,b){
 console.log(d.Countries);
 for(i=0;i<d.Countries.length;i++){
    h+='<tr>';
-    h+='<td>'+i+'</td>';
+    h+='<td>'+(i+1)+'</td>';
     h+='<td>'+d.Countries[i].Country+'</td>';
     h+='<td>'+d.Countries[i].Slug+'</td>';
     h+='<td>'+d.Countries[i].CountryCode+'</td>';
