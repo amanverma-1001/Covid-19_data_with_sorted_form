@@ -1,10 +1,12 @@
+
+
 $(document).ready(function(){
-  var y;
-fetch('https://api.covid19api.com/summary').then((res)=>
-{
-console.log(res);
-return res.json();
-}).then((d)=>
+  
+  var y,addcountry;
+fetch('https://api.covid19api.com/summary',{
+mode:"cors"
+
+}).then(res=> res.json()).then((d)=>
 {
 console.log(d.Global);
 var t=d.Global;
@@ -14,6 +16,7 @@ $("#glo").html("<u1> <li style='background-color:red'>  Total Confirmed "+t.Tota
 +t.NewDeaths+"</li><li style='color:black'> New Recovered "+t.NewRecovered+"</li></u1>");
 console.log(d.Countries);
 function display(arr){
+  addcountry="";
 for(i=0;i<arr.length;i++){
    y+='<tr>';
     y+='<td>'+(i+1)+'</td>';
@@ -27,10 +30,14 @@ for(i=0;i<arr.length;i++){
     y+='<td>'+arr[i].TotalDeaths+'</td>';
     y+='<td>'+arr[i].TotalRecovered+'</td>';
     y+='</tr>';
+    addcountry+=`<li>${arr[i].Country}</li>`;
 }
 $("#run").html(y);
+$("#myUL").html(addcountry);
 }
 display(d.Countries);
+
+
 
 $("#submit2").click(function(){
   $("#run").empty();
@@ -62,13 +69,15 @@ for(i=0;i<d.Countries.length;i++){
 }
 $("#run").html(h);
 });
+
+
 $("#submit1").click(function(){
   $("#run").empty();
   var s="";
   var z=$("#userfield").val();
 for(i=0;i<d.Countries.length;i++)
       {
-       if(d.Countries[i].Country==z)
+       if(d.Countries[i].Country.includes(z))
        {
          var t=d.Countries[i];
          s+='<tr>';
@@ -83,10 +92,69 @@ for(i=0;i<d.Countries.length;i++)
     s+='<td>'+t.TotalDeaths+'</td>';
     s+='<td>'+t.TotalRecovered+'</td>';
     s+='</tr>';
-         $("#run").html(s);
-         break;
+        
        }}
+       $("#run").html(s);
+        
+
       });
+      $(document).on('click', 'li', function(){
+        var ans;
+        ans=$(this).text();
+        $("#loading").delay(800).fadeIn();
+        $("#loading").fadeOut('fast',function(){
+        
+        $("#myInput").val(ans);
+        dashboardvalue(ans);
+        });
+   });
+   function dashboardvalue(ans){
+    var countryname=ans;
+
+    
+  for(i=0;i<d.Countries.length;i++)
+        {
+         if(d.Countries[i].Country==countryname)
+         {
+           var t=d.Countries[i];
+          $("#countrycard").text(`${t.Country}(${t.CountryCode})`);
+          $("#newconfirmed").text(t.NewConfirmed);
+           $("#newdeaths").text(t.NewDeaths);
+            $("#newrecovered").text(t.NewRecovered);
+            $("#totalconfirmed").text(t.TotalConfirmed);
+             $("#totaldeaths").text(t.TotalDeaths); 
+      $("#totalrecovered").text(t.TotalRecovered);
+      $("#countrycard2").text(`${t.Country}(${t.CountryCode})`);
+      $("#newconfirmed2").text(t.NewConfirmed);
+       $("#newdeaths2").text(t.NewDeaths);
+        $("#newrecovered2").text(t.NewRecovered);
+        $("#totalconfirmed2").text(t.TotalConfirmed);
+         $("#totaldeaths2").text(t.TotalDeaths); 
+  $("#totalrecovered2").text(t.TotalRecovered);
+    
+          break;
+         }}
+        }
+
+      $("#myInput").keyup(function(){
+        $("#myUL").empty();
+        var lk=$("#myInput").val();
+        var fc="";
+        for(i=0;i<d.Countries.length;i++)
+      {
+       if(d.Countries[i].Country.toLowerCase().indexOf(lk.toLowerCase())==0)
+       {
+         var t=d.Countries[i];
+         
+    fc+='<li>'+t.Country+'</li>';
+    
+        
+       }}
+       $("#myUL").html(fc);
+
+      });
+
+      
 }).catch((err)=>
 {
 console.log(err);
