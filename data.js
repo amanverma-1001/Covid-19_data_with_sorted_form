@@ -98,6 +98,9 @@ for(i=0;i<d.Countries.length;i++)
         
 
       });
+      
+      
+      
       $(document).on('click', 'li', function(){
         var ans;
         ans=$(this).text();

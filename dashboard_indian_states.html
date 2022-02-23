@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="fstdropdown.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="fstdropdown.js"></script>
+  
+  </head>
+  <style>
+    #largedashboard{
+  display:block;
+}
+
+
+  *{
+      color:white;
+  }
+  .jumbotron{
+      background-color:#67a5f5;
+  }
+  
+    .zoom:hover {
+  transform: scale(1.1); 
+}
+.card{
+  box-shadow: 5px 10px 18px #888888;
+}
+#smalldashboard{
+  display: none;
+}
+#loading-image-small{
+  display: none;
+}
+@media only screen and (max-width: 600px) {
+  #largedashboard{
+    display:none;
+  }
+  #loading{
+    display:none;
+  }
+  #smalldashboard{
+    display:block;
+  }
+  #loading-image-small{
+    display:block;
+  }
+}  
+
+  </style>
+  
+<body>
+
+
+
+<div class="container">
+  <div class="jumbotron">
+    <h1>Covid-19 data</h1>      
+    <p>Get Covid-19 data of a country</p>
+  </div>
+      
+</div>
+<div class="container">
+  <input type="text" id="myInput" style="color: black" placeholder="Enter the name of country" title="Type in a name">
+
+<ul id="myUL">
+ 
+</ul>
+
+
+ <div class="card mt-5" id="largedashboard" style="background-color:#a2caa5">
+    <div class="card-body">
+    <center>
+    <h4 class="card-title" style="color:black" id="statecard">State</h4>
+
+    </center>
+                 <div class="card-deck">
+    <div class="card bg-primary zoom">
+      <div class="card-body text-center">
+        <h5 class="card-text">Confirmed</h5>
+
+        <h5 id="confirmed">0</h5>
+        </div>
+    </div>
+    <div class="card bg-warning zoom">
+      <div class="card-body text-center">
+        <h5 class="card-text">Recovered</h5>
+        <h5 id="cured">0</h5>
+      </div>
+    </div>
+    <div class="card bg-success zoom">
+      <div class="card-body text-center">
+        <h5 class="card-text">Death</h5>
+        <h5 id="death">0</h5>
+      </div>
+    </div>
+      
+  </div>
+
+
+  <div class="card bg-success zoom mt-3">
+    <div class="card-body text-center">
+      <h5 class="card-text">Total</h5>
+      <h5 id="total">0</h5>
+    </div>
+  </div>
+
+
+  </div>
+
+</div>
+
+
+
+
+
+<div class="card mt-5" id="smalldashboard">
+  <div class="card-body">
+  <center>
+  <h4 class="card-title" style="color:black" id="statecard2">State</h4>
+
+  </center>
+            
+  <div class="card bg-primary zoom mt-5">
+    <div class="card-body text-center">
+      <h5 class="card-text">Confirmed</h5>
+
+      <h5 id="confirm2">0</h5>
+      </div>
+  </div>
+     
+  <div class="card bg-warning zoom mt-5">
+    <div class="card-body text-center">
+      <h5 class="card-text">Recovered</h5>
+      <h5 id="cured2">0</h5>
+    </div>
+  </div>
+  <div class="card bg-success zoom mt-5">
+    <div class="card-body text-center">
+      <h5 class="card-text">Deaths</h5>
+      <h5 id="death2">0</h5>
+    </div>
+  </div>
+    
+
+  <div class="card bg-success zoom mt-5">
+    <div class="card-body text-center">
+      <h5 class="card-text">Total</h5>
+      <h5 id="total2">0</h5>
+    </div>
+  </div>
+  
+  
+
+ </div>
+      
+
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
+<script>
+
+var data;
+  
+$(document).ready(function(){
+  
+     const settings = {
+	"async": true,
+	"crossDomain": true,
+	"url": "https://covid-19-india2.p.rapidapi.com/details.php",
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "covid-19-india2.p.rapidapi.com",
+		"x-rapidapi-key": "35436539edmshdcfa4fb1c75a67ap1773e6jsnbf2ce37e3ccf"
+	}
+};
+
+$.ajax(settings).done(function (response) {
+  data=JSON.parse(response);
+  var u="";
+  for(const i in data){
+    u+='<li>'+i+'</li>';
+  }
+  $("#myUL").html(u);
+});
+
+
+$("#myInput").keyup(function(){
+        $("#myUL").empty();
+        var lk=$("#myInput").val();
+        var fc="";
+        for(const x in data)
+      {
+       if(x.toLowerCase().indexOf(lk.toLowerCase())==0)
+       {
+         
+         
+    fc+='<li>'+x+'</li>';
+    
+        
+       }}
+       $("#myUL").html(fc);
+
+      });
+
+      $(document).on('click', 'li', function(){
+        var ans;
+        ans=$(this).text();
+        
+        $("#myInput").val(ans);
+        dashboardvalue(ans);
+      });
+
+      function dashboardvalue(ans){
+        $("#statecard").text(ans);
+        $("#statecard2").text(ans);
+        $("#confirmed").text(data[ans]["confirm"]);
+        $("#cured").text(data[ans]["cured"]);
+        $("#death").text(data[ans]["death"]);
+        $("#total").text(data[ans]["total"]);
+        $("#confirm2").text(data[ans]["confirm"]);
+        $("#cured2").text(data[ans]["cured"]);
+        $("#death2").text(data[ans]["death"]);
+        $("#total2").text(data[ans]["total"]);
+        
+       
+        console.log(data[ans]);
+      }
+
+
+
+});
+
+
+
+</script>
+</body>
+</html>
